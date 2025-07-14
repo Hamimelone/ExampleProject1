@@ -72,7 +72,7 @@ public class MonsterPool : MonoBehaviour
         return m;
     }
 
-    public T GetMonster<T>() where T : Monster
+    public T GetMonster<T>(Vector2 spawnPos) where T : Monster
     {
         var type = typeof(T);
         if (!pools.ContainsKey(type))
@@ -94,7 +94,7 @@ public class MonsterPool : MonoBehaviour
             Debug.Log($"Expanding pool for {type}");
         }
 
-        m.Initialize();
+        m.Initialize(spawnPos);
         return (T)m;
     }
 

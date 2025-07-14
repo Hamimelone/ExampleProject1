@@ -10,7 +10,8 @@ public enum TileType
     BuffTile,
     Locked,
     SpawnPoint,
-    EndPoint
+    EndPoint,
+    Tower
 }
 
 [CreateAssetMenu(menuName = "2D/Tiles/GameTile")]
