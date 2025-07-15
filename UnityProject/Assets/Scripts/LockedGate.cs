@@ -9,4 +9,9 @@ public class LockedGate : MapObject
         MapManager.Instance.NotPlacableList.Add(transform.position);
         MapManager.Instance.DicPosToGTData[transform.position] = new GameTileData(TileType.Locked, this);
     }
+    public void UnlockSelf()
+    {
+        MapManager.Instance.DicPosToGTData[transform.position] = new GameTileData(TileType.Placable, null);
+        Destroy(gameObject);
+    }
 }

@@ -22,6 +22,16 @@ public abstract class Tower : MapObject
         MaxHealth = standardHP;
         CurrentHealth = MaxHealth;
     }
+    public virtual void Upgrade()
+    {
+
+    }
+    public virtual void SelfDemolish()
+    {
+        TowerManager.Instance.PlacedTowerList.Remove(transform.position);
+        MapManager.Instance.DicPosToGTData[transform.position] = new GameTileData(TileType.Placable, null);
+        Destroy(gameObject);
+    }
 }
 
 [Serializable]

@@ -75,7 +75,7 @@ public class MapManager : Singleton<MapManager>
                     break;
             }
         }
-        Lmap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+        Lmap.GetComponent<TilemapRenderer>().enabled = false;
         nms.BuildNavMesh();
     }
 

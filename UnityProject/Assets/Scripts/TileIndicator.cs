@@ -16,6 +16,7 @@ public class TileIndicator : MonoBehaviour
     [SerializeField] private Button btn_Upgrade;
     [SerializeField] private Button btn_Demolish;
     [SerializeField] private Button btn_Unlock;
+    private MapObject currentMO;
     private bool IsClickable;
 
     private SpriteRenderer sr;
@@ -23,6 +24,10 @@ public class TileIndicator : MonoBehaviour
     private void Start()
     {
         IsDisplayingHUD = false;
+        currentMO = null;
+        btn_Unlock.onClick.AddListener(() => UnlockSelectedBlock());
+        btn_Demolish.onClick.AddListener(() => DemolishSelectedTower());
+        btn_Upgrade.onClick.AddListener(() => UpgradeSelectedTower());
     }
 
     private void Update()
@@ -104,6 +109,11 @@ public class TileIndicator : MonoBehaviour
         buildBtnLayout.gameObject.SetActive(CheckPlacable(pos));
         if (CheckPlacable(pos)) RefreshBuildBtn(pos);
         mapObjectBtnLayout.gameObject.SetActive(CheckMapObject(pos));
+        if (CheckMapObject(pos))
+        {
+            currentMO = MapManager.Instance.DicPosToGTData[pos].gtMO;
+            RefreshTowerBtn(pos);
+        }
     }
     private void RefreshBuildBtn(Vector2 pos)
     {
@@ -119,6 +129,40 @@ public class TileIndicator : MonoBehaviour
                 tb.GetComponent<Image>().sprite = t.GetComponent<SpriteRenderer>().sprite;
                 tb.onClick.AddListener(()=>TowerManager.Instance.PlaceTowerOn(t.TowerIndex,pos));
             }
+        }
+    }
+    private void RefreshTowerBtn(Vector2 pos)
+    {
+        btn_Unlock.gameObject.SetActive(MapManager.Instance.DicPosToGTData[pos].gtMO is LockedGate);
+        btn_Demolish.gameObject.SetActive(MapManager.Instance.DicPosToGTData[pos].gtMO is Tower);
+        btn_Upgrade.gameObject.SetActive(MapManager.Instance.DicPosToGTData[pos].gtMO is Tower);
+    }
+    public void UnlockSelectedBlock()
+    {
+        if(currentMO!=null && currentMO is LockedGate lg)
+        {
+            if (GameManager.Instance.Gold >= 500)
+            {
+                GameManager.Instance.SpendGold(500);
+                lg.UnlockSelf();
+                HideHUD();
+            }
+        }
+    }
+    public void DemolishSelectedTower()
+    {
+        if(currentMO != null && currentMO is Tower t)
+        {
+            t.SelfDemolish();
+            HideHUD();
+        }
+    }
+    public void UpgradeSelectedTower()
+    {
+        if (currentMO != null && currentMO is Tower t)
+        {
+            t.Upgrade();
+            HideHUD();
         }
     }
 }
