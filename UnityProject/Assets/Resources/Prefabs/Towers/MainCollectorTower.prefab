@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4453243967642840602
+--- !u!1 &1265673966016194930
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7153341532346092085}
-  - component: {fileID: 1540161454462688353}
-  - component: {fileID: -5126478699780035198}
+  - component: {fileID: 7378108732446888303}
+  - component: {fileID: 770097870891124400}
+  - component: {fileID: -5006565847080714666}
   m_Layer: 0
-  m_Name: SpawnPortal
+  m_Name: MainCollectorTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7153341532346092085
+--- !u!4 &7378108732446888303
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453243967642840602}
+  m_GameObject: {fileID: 1265673966016194930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1540161454462688353
+--- !u!212 &770097870891124400
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453243967642840602}
+  m_GameObject: {fileID: 1265673966016194930}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 559871959
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5642b07d787e1f47b442520c81c24f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 763164d52eb29d64fbbe9e5f08c02df4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,18 +85,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5126478699780035198
+--- !u!114 &-5006565847080714666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453243967642840602}
+  m_GameObject: {fileID: 1265673966016194930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1113b84a3cccae940b97d10ab927cf57, type: 3}
+  m_Script: {fileID: 11500000, guid: f034c41023e6c64498896721d9db0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 1
-  actualSpawnInterval: 1
-  spawnRange: 1
+  IsBuildable: 0
+  IsUnlocked: 0
+  TowerIndex: 100
+  TowerName: "\u4E3B\u91C7\u96C6\u5668"
+  Price:
+    GoldAmount: 0
+    GemAmount: 0
+  standardHP: 1000
+  CurrentHealth: 0
+  MaxHealth: 0
+  standardProduceGoldSpeed: 0.5
+  produceGoldAmount: 100
+  CurrentProduceSpeed: 0
+  standardProduceGemSpeed: 0.5
+  produceGemAmount: 5
+  CurrentProduceGemSpeed: 0

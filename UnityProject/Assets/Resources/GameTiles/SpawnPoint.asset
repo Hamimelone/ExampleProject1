@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c363163c574d3140bc8fd0196bad07e, type: 3}
   m_Name: SpawnPoint
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 8f526df654e472e44ac1940033a4d1d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5642b07d787e1f47b442520c81c24f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

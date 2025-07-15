@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3287255771097025653}
   - component: {fileID: -9164025405446825038}
   - component: {fileID: 6404805299038375477}
-  m_Layer: 0
+  - component: {fileID: -7607420330429473851}
+  m_Layer: 8
   m_Name: Slime_Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 0.3
+  standardHP: 100
+  MaxHealth: 0
+  CurrentHealth: 0
 --- !u!195 &-9164025405446825038
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -131,7 +135,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1951872177193419210}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.05
+  m_Radius: 0.2
   m_Speed: 0.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -160,3 +164,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!50 &-7607420330429473851
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951872177193419210}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
