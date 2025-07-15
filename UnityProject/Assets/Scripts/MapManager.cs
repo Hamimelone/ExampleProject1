@@ -1,3 +1,4 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,29 +6,33 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : Singleton<MapManager>
 {
-    public TileIndicator tileIndicator;
     [SerializeField] private Grid grid;
-    [SerializeField] private Tilemap backgroundMap;
-    [SerializeField] private Tilemap wallMap;
     [SerializeField] private Tilemap logicMap;
+    [SerializeField] private Tilemap gameMapWall;
+    [SerializeField] private Tilemap gameMapBG;
+    [SerializeField] private GameTile gT_BG;
+    [SerializeField] private NavMeshSurface nms;
+    [SerializeField] private Transform mapObjectTransform;
     [Header("InitializeSetting")]
     [SerializeField] private SpawnPortal spawnPortal;
-    [SerializeField] private EndPortal endPortal;
+    [SerializeField] private T_MainCollector mainCollector;
     [SerializeField] private LockedGate lockedGate;
-    public Dictionary<Vector2,TileType>DicPosToTileType = new Dictionary<Vector2,TileType>();
+    public Dictionary<Vector2,GameTileData>DicPosToGTData = new Dictionary<Vector2,GameTileData>();
 
     public List<Vector2> NotPlacableList = new List<Vector2>();
     private void Start()
     {
         Initialize();
-        LoadMap(backgroundMap, wallMap, logicMap);
+        LoadMap(logicMap);
+        MonsterSpawner.Instance.StartSpawning();
     }
     public void Initialize()
     {
         NotPlacableList.Clear();
-        DicPosToTileType.Clear();
+        DicPosToGTData.Clear();
+        nms.RemoveData();
     }
-    public void LoadMap(Tilemap BgMap, Tilemap Wmap, Tilemap Lmap)
+    public void LoadMap(Tilemap Lmap)
     {
         foreach (var pos in Lmap.cellBounds.allPositionsWithin)
         {
@@ -37,38 +42,41 @@ public class MapManager : Singleton<MapManager>
             GameTile GTile = Lmap.GetTile<GameTile>(pos);
             switch (GTile.TileType)
             {
-                case TileType.None:
+                case TileType.Placable:
+                    gameMapBG.SetTile(pos, GTile);
+                    DicPosToGTData[gridPos] = new GameTileData(TileType.Placable, null);
                     break;
                 case TileType.Wall:
+                    gameMapWall.SetTile(pos, GTile);
+                    DicPosToGTData[gridPos] = new GameTileData(TileType.Wall, null);
+                    break;
+                case TileType.Path:
+                    gameMapBG.SetTile(pos, GTile);
+                    DicPosToGTData[gridPos] = new GameTileData(TileType.Path, null);
                     break;
                 case TileType.BuffTile:
+                    gameMapBG.SetTile(pos, GTile);
+                    DicPosToGTData[gridPos] = new GameTileData(TileType.BuffTile, null);
                     break;
                 case TileType.Locked:
-                    LockedGate lg = Instantiate(lockedGate, gridPos, Quaternion.identity);
+                    gameMapBG.SetTile(pos, gT_BG);
+                    LockedGate lg = Instantiate(lockedGate, gridPos, Quaternion.identity, mapObjectTransform);
                     lg.Initialize();
                     break;
                 case TileType.SpawnPoint:
-                    SpawnPortal sp = Instantiate(spawnPortal, gridPos, Quaternion.identity);
+                    SpawnPortal sp = Instantiate(spawnPortal, gridPos, Quaternion.identity, mapObjectTransform);
                     sp.Initialize();
                     break;
                 case TileType.EndPoint:
-                    EndPortal ep = Instantiate(endPortal, gridPos,Quaternion.identity);
-                    ep.Initialize();
+                    gameMapBG.SetTile(pos, gT_BG);
+                    TowerManager.Instance.PlaceTowerOn(100,gridPos);
                     break;
                 default:
                     break;
             }
         }
         Lmap.GetComponent<TilemapRenderer>().sortingOrder = -1;
-
-        foreach (var pos in Wmap.cellBounds.allPositionsWithin)
-        {
-            if (!Wmap.HasTile(pos)) continue;
-            Vector3 worldPos = Wmap.CellToWorld(pos);
-            Vector2 gridPos = new Vector2(worldPos.x + grid.cellSize.x / 2, worldPos.y + grid.cellSize.y / 2);
-            NotPlacableList.Add(gridPos);
-            DicPosToTileType.Add(gridPos, TileType.Wall);
-        }
+        nms.BuildNavMesh();
     }
 
     public bool IsPosPlacable(Vector2 pos)
@@ -77,8 +85,16 @@ public class MapManager : Singleton<MapManager>
         return true;
     }
 
-    public void IndicatorSetTo(Vector2 pos)
+}
+
+public class GameTileData
+{
+    public TileType gtType;
+    public MapObject gtMO;
+
+    public GameTileData(TileType tt,MapObject mo)
     {
-        tileIndicator.SetPosTo(pos);
+        gtType = tt;
+        gtMO = mo;
     }
 }

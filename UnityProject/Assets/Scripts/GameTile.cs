@@ -5,12 +5,13 @@ using UnityEngine.Tilemaps;
 
 public enum TileType
 {
-    None,
+    Placable,
     Wall,
     BuffTile,
     Locked,
     SpawnPoint,
     EndPoint,
+    Path,
     Tower
 }
 
