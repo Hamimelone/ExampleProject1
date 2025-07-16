@@ -10,7 +10,7 @@ public class TileIndicator : MonoBehaviour
     [SerializeField] private Grid grid;
     public bool IsDisplayingHUD;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private Button towerBuildBtnPrefab;
+    [SerializeField] private TowerButtonPrefab towerBuildBtnPrefab;
     [SerializeField] private Transform buildBtnLayout;
     [SerializeField] private Transform mapObjectBtnLayout;
     [SerializeField] private Button btn_Upgrade;
@@ -125,9 +125,9 @@ public class TileIndicator : MonoBehaviour
         {
             if(t.IsBuildable && t.IsUnlocked)
             {
-                Button tb = Instantiate(towerBuildBtnPrefab, buildBtnLayout);
-                tb.GetComponent<Image>().sprite = t.GetComponent<SpriteRenderer>().sprite;
-                tb.onClick.AddListener(()=>TowerManager.Instance.PlaceTowerOn(t.TowerIndex,pos));
+                TowerButtonPrefab tb = Instantiate(towerBuildBtnPrefab, buildBtnLayout);
+                tb.ChildIcon.sprite = t.GetComponent<SpriteRenderer>().sprite;
+                tb.GetComponent<Button>().onClick.AddListener(()=>TowerManager.Instance.PlaceTowerOn(t.TowerIndex,pos));
             }
         }
     }
