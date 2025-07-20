@@ -12,6 +12,16 @@ public class VictoryPanel : MonoBehaviour
     private void Awake()
     {
         menuBtn.onClick.AddListener(() => SceneManager.LoadScene("MainMenu"));
-        restartBtn.onClick.AddListener(() => GameManager.Instance.GameStart());
+        restartBtn.onClick.AddListener(NextLevel);
+    }
+
+    public void NextLevel()
+    {
+        if (LevelManager.Instance.CurrentLevelIndex == LevelManager.Instance.levels.Count)
+        {
+            SceneManager.LoadScene("MainMenu");
+            LevelManager.Instance.CurrentLevelIndex = 0;
+        }else
+            GameManager.Instance.GameStart();
     }
 }

@@ -32,8 +32,13 @@ public class TowerManager : Singleton<TowerManager>
             // 3. 初始化塔
             newTower.Initialize();
             AudioManager.Instance.Play("Construction");
+            ti.HideHUD();
         }
-        ti.HideHUD();
+        else
+        {
+            UIManager.Instance.ShowText("Not enough resource",2.5f);
+        }
+        
     }
 
     // 从可用塔列表中查找指定类型的预制体

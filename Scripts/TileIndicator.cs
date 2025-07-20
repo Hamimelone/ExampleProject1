@@ -134,6 +134,8 @@ public class TileIndicator : MonoBehaviour
                 lg.UnlockSelf();
                 HideHUD();
             }
+            else
+                UIManager.Instance.ShowText("Not enough R1",2.5f);
         }
     }
     public void DemolishSelectedTower()

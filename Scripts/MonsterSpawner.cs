@@ -25,6 +25,8 @@ public class MonsterSpawner : Singleton<MonsterSpawner>
         currentWave = 0;
         weightList.Add(50f);
         weightList.Add(0f);
+        StopCoroutine(StartTimeLine());
+        StopSpawning();
         MonsterPool.Instance.InitializePools();
         StartCoroutine(StartTimeLine());
     }
@@ -73,19 +75,22 @@ public class MonsterSpawner : Singleton<MonsterSpawner>
     }
     IEnumerator StartTimeLine()
     {
+        int currentLevel = LevelManager.Instance.CurrentLevelIndex;
         IsSpawning = false;
         SpawnFinished = false;
-        while (currentWave < maxWaveNum)
+        while (currentWave < maxWaveNum && currentLevel == LevelManager.Instance.CurrentLevelIndex)
         {
             yield return new WaitForSeconds(restingTime);
             currentWave++;
             StartSpawning(1.2f - 0.2f * (float)currentWave);
             actualSpawnInterval -= Mathf.Max( 0.5f * Time.deltaTime / spawningTime,0.1f);
+            UIManager.Instance.ShowText("Monster coming",1.5f);
             yield return new WaitForSeconds(spawningTime);
             weightList[0] -= 10f;
             weightList[1] += 15f;
             StopSpawning();
         }
+        SpawnFinished = false;
         SpawnFinished = true;
     }
     public void SpawnMonster()

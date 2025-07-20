@@ -59,12 +59,13 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.Initialize();
         TowerManager.Instance.Initialize();
         MapManager.Instance.Initialize();
+        MapManager.Instance.LoadMap(LevelManager.Instance.levels[LevelManager.Instance.CurrentLevelIndex].LevelMap);
         UIManager.Instance.Initialize();
         GameContinue();
     }
     public void InitializeGame()
     {
-        Gold = 100;
+        Gold = LevelManager.Instance.levels[LevelManager.Instance.CurrentLevelIndex].initialGold;
         Gem = 0;
         goldText.text = Gold.ToString();
         gemText.text = Gem.ToString();
@@ -81,12 +82,15 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         GamePause();
+        UIManager.Instance.Initialize();
         UIManager.Instance.ShowGameOverPanel();
     }
     public void ShowVictory()
     {
         GamePause();
+        UIManager.Instance.Initialize();
         UIManager.Instance.ShowVictoryPanel();
+        LevelManager.Instance.CurrentLevelIndex += 1;
     }
     public void CheckVictory()
     {

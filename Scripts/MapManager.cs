@@ -8,6 +8,7 @@ public class MapManager : Singleton<MapManager>
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Tilemap logicMap;
+    public Tilemap CurrentLogicMap;
     [SerializeField] private Tilemap gameMapWall;
     [SerializeField] private Tilemap gameMapBG;
     [SerializeField] private GameTile gT_BG;
@@ -25,17 +26,21 @@ public class MapManager : Singleton<MapManager>
         NotPlacableList.Clear();
         DicPosToGTData.Clear();
         GameObjectExtensions.DestroyAllChildren(mapObjectTransform.gameObject);
+        gameMapBG.ClearAllTiles();
+        gameMapWall.ClearAllTiles();
         nms.RemoveData();
-        LoadMap(logicMap);
+        CurrentLogicMap = null;
+        //LoadMap(logicMap);
     }
     public void LoadMap(Tilemap Lmap)
     {
-        foreach (var pos in Lmap.cellBounds.allPositionsWithin)
+        CurrentLogicMap = Instantiate(Lmap,grid.GetComponent<Transform>());
+        foreach (var pos in CurrentLogicMap.cellBounds.allPositionsWithin)
         {
-            if (!Lmap.HasTile(pos)) continue;
-            Vector3 worldPos = Lmap.CellToWorld(pos);
+            if (!CurrentLogicMap.HasTile(pos)) continue;
+            Vector3 worldPos = CurrentLogicMap.CellToWorld(pos);
             Vector2 gridPos = new Vector2(worldPos.x + grid.cellSize.x / 2, worldPos.y + grid.cellSize.y / 2);
-            GameTile GTile = Lmap.GetTile<GameTile>(pos);
+            GameTile GTile = CurrentLogicMap.GetTile<GameTile>(pos);
             switch (GTile.TileType)
             {
                 case TileType.Placable:
@@ -60,6 +65,7 @@ public class MapManager : Singleton<MapManager>
                     lg.Initialize();
                     break;
                 case TileType.SpawnPoint:
+                    gameMapBG.SetTile(pos, gT_BG);
                     SpawnPortal sp = Instantiate(spawnPortal, gridPos, Quaternion.identity, mapObjectTransform);
                     sp.Initialize();
                     break;
@@ -71,7 +77,7 @@ public class MapManager : Singleton<MapManager>
                     break;
             }
         }
-        Lmap.GetComponent<TilemapRenderer>().enabled = false;
+        CurrentLogicMap.GetComponent<TilemapRenderer>().enabled = false;
         nms.BuildNavMesh();
         
     }

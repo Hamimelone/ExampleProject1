@@ -32,12 +32,11 @@ public abstract class Monster : MonoBehaviour
 
     public virtual void Initialize(Vector2 spawnPos)
     {
-        agent = GetComponent<NavMeshAgent>();
+        transform.position = spawnPos;
         agent.updateRotation = false;  // 2D游戏不需要旋转
         agent.updateUpAxis = false;
         gameObject.SetActive(true);
         cc2D.radius = size;
-        transform.position = spawnPos;
         MaxHealth = standardHP;
         CurrentHealth = MaxHealth;
         IsActive = true;
@@ -53,6 +52,7 @@ public abstract class Monster : MonoBehaviour
     }
     public virtual void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         cc2D = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
     }
