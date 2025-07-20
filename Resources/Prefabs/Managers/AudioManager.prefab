@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3356333643597073336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3356333643597073334}
+  - component: {fileID: 3356333643597073335}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3356333643597073334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356333643597073336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3356333643597073335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356333643597073336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2245eb15ec6bc2d48b18e2c1cdb67418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolumeSlider: {fileID: 2214579654842011253, guid: 424a27283aa45944487a9015d325a19e, type: 3}
+  volumePercentageText: {fileID: 7328477097702126131, guid: ce6d76072a608874e9f168d6e41a1925, type: 3}
+  sounds:
+  - name: CollectorRepairing
+    clip: {fileID: 8300000, guid: dd75d177047f8b04c826ecfea0576b74, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Construction
+    clip: {fileID: 8300000, guid: ee93d97db3e2b8f41afc827492e883ad, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Destruction
+    clip: {fileID: 8300000, guid: 63b595cfa6a7b37429909d941b18f48d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TileHover1
+    clip: {fileID: 8300000, guid: 8cd58581ac820b0409f086bcd4f365ae, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TileUnlock
+    clip: {fileID: 8300000, guid: 673d52d93ab4991449404b64af053cd2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: WaveWarning
+    clip: {fileID: 8300000, guid: 26b74c454cfa67a4eb377146b34488e7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: FinalWave
+    clip: {fileID: 8300000, guid: dcf06ef96d5ba2d40801923169330866, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TowerHit
+    clip: {fileID: 8300000, guid: b45d3bf9c26a52e40b03c6ed3dfd60b7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TowerUpgrade
+    clip: {fileID: 8300000, guid: 67351dbc89a766a46adec7fedb0a1a56, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: HPAlarm
+    clip: {fileID: 8300000, guid: 9976022c93a517a46af6eeea40304815, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LaserShot
+    clip: {fileID: 8300000, guid: 6b201d9baf31be748acc315cbc5b5b8e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LightningShot
+    clip: {fileID: 8300000, guid: 417235f6c8248cf4c922faa77ca04e80, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: UIClick
+    clip: {fileID: 8300000, guid: 1d922e9be1c01b340922a74d04814473, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  maxSimultaneousSounds: 20

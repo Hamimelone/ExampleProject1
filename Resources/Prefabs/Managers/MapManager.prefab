@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1197498893451994202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197498893451994204}
+  - component: {fileID: 1197498893451994205}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1197498893451994204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197498893451994202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1197498893451994205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197498893451994202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35627a8d3917efe4898fc47e1e101471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 550094767696918199, guid: b206306ab8bd4fe4e908c212634645d0, type: 3}
+  logicMap: {fileID: 0}
+  CurrentLogicMap: {fileID: 0}
+  gameMapWall: {fileID: 3446855644057735512, guid: 4b1a1dc0046783c469fa18a891f52650, type: 3}
+  gameMapBG: {fileID: 2439999666780923168, guid: 0dd8987d1397238428060ba421376617, type: 3}
+  gT_BG: {fileID: 11400000, guid: ebe4bae70f8500a47b4eeba44043a06e, type: 2}
+  nms: {fileID: 890651640049426365, guid: cd9ee4d5b0722414d91040822d400e50, type: 3}
+  mapObjectTransform: {fileID: 3985311401885826108, guid: f683995a9e502f74c9ff2c3877056db6, type: 3}
+  spawnPortal: {fileID: -5126478699780035198, guid: 47bbc0b0934cf05419f2336c67c4772c, type: 3}
+  mainCollector: {fileID: -5006565847080714666, guid: 0cd8ec2a88a19ec42a1e28fd472d0642, type: 3}
+  lockedGate: {fileID: 5348857534440872387, guid: ae17568bae9c09141a4f32ca63c2a199, type: 3}
+  NotPlacableList: []
